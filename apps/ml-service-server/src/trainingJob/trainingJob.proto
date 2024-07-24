@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+                 package trainingJob;
+service TrainingJobService {
+ rpc createTrainingJob (TrainingJobCreateInput) returns (TrainingJob) {}
+rpc trainingJobs (findManyParams) returns (stream TrainingJob) {}
+rpc trainingJob (TrainingJobWhereUniqueInput) returns (TrainingJob) {}
+rpc updateTrainingJob (TrainingJobUpdateInput) returns (TrainingJob) {}
+rpc deleteTrainingJob (TrainingJobWhereUniqueInput) returns (TrainingJob) {} 
+ }
+message TrainingJobCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJob {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJobWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJobUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message findManyParams {
+
+};
