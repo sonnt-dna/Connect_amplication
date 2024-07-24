@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+                 package prediction;
+service PredictionService {
+ rpc createPrediction (PredictionCreateInput) returns (Prediction) {}
+rpc predictions (findManyParams) returns (stream Prediction) {}
+rpc prediction (PredictionWhereUniqueInput) returns (Prediction) {}
+rpc updatePrediction (PredictionUpdateInput) returns (Prediction) {}
+rpc deletePrediction (PredictionWhereUniqueInput) returns (Prediction) {} 
+ }
+message PredictionCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string inputData = 4;
+string outputData = 5;
+string predictedAt = 6;
+};
+message Prediction {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string inputData = 4;
+string outputData = 5;
+string predictedAt = 6;
+};
+message PredictionWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string inputData = 4;
+string outputData = 5;
+string predictedAt = 6;
+};
+message PredictionUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string inputData = 4;
+string outputData = 5;
+string predictedAt = 6;
+};
+message findManyParams {
+
+};

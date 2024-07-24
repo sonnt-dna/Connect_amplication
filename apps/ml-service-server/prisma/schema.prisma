@@ -1,0 +1,67 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Model {
+  id           String           @id @default(cuid())
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  status       EnumModelStatus?
+  accuracy     Float?
+  name         String?
+  version      String?
+  trainingJobs TrainingJob[]
+  predictions  Prediction[]
+}
+
+model TrainingJob {
+  id        String                 @id @default(cuid())
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @updatedAt
+  status    EnumTrainingJobStatus?
+  endTime   DateTime?
+  startTime DateTime?
+  model     Model?                 @relation(fields: [modelId], references: [id])
+  modelId   String?
+  dataset   Dataset?               @relation(fields: [datasetId], references: [id])
+  datasetId String?
+}
+
+model Dataset {
+  id           String             @id @default(cuid())
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  name         String?
+  source       String?
+  size         Int?
+  format       EnumDatasetFormat?
+  trainingJobs TrainingJob[]
+}
+
+model Prediction {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  inputData   Json?
+  outputData  Json?
+  predictedAt DateTime?
+  model       Model?    @relation(fields: [modelId], references: [id])
+  modelId     String?
+}
+
+enum EnumModelStatus {
+  Option1
+}
+
+enum EnumTrainingJobStatus {
+  Option1
+}
+
+enum EnumDatasetFormat {
+  Option1
+}

@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+                 package model;
+service ModelService {
+ rpc createModel (ModelCreateInput) returns (Model) {}
+rpc models (findManyParams) returns (stream Model) {}
+rpc model (ModelWhereUniqueInput) returns (Model) {}
+rpc updateModel (ModelUpdateInput) returns (Model) {}
+rpc deleteModel (ModelWhereUniqueInput) returns (Model) {}
+rpc findManyModel (ModelWhereUniqueInput) returns (stream TrainingJob) {}
+rpc updateModel (TrainingJobParams) returns (stream TrainingJob) {}
+rpc connectModel (TrainingJobParams) returns (TrainingJob) {}
+rpc disconnectModel (TrainingJobParams) returns (TrainingJob) {}
+rpc findManyModel (ModelWhereUniqueInput) returns (stream Prediction) {}
+rpc updateModel (PredictionParams) returns (stream Prediction) {}
+rpc connectModel (PredictionParams) returns (Prediction) {}
+rpc disconnectModel (PredictionParams) returns (Prediction) {} 
+ }
+message ModelCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+int32 accuracy = 5;
+string name = 6;
+string version = 7;
+repeated TrainingJob trainingJobs = 8;
+repeated Prediction predictions = 9;
+};
+message Model {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+int32 accuracy = 5;
+string name = 6;
+string version = 7;
+repeated TrainingJob trainingJobs = 8;
+repeated Prediction predictions = 9;
+};
+message ModelWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+int32 accuracy = 5;
+string name = 6;
+string version = 7;
+repeated TrainingJob trainingJobs = 8;
+repeated Prediction predictions = 9;
+};
+message ModelUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+int32 accuracy = 5;
+string name = 6;
+string version = 7;
+repeated TrainingJob trainingJobs = 8;
+repeated Prediction predictions = 9;
+};
+message findManyParams {
+
+};
+message TrainingJob {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJobWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJobParams {
+ModelWhereUniqueInput modelWhereUniqueInput = 1;
+TrainingJobWhereUniqueInput trainingjobWhereUniqueInput = 2;
+};
+message Prediction {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string inputData = 4;
+string outputData = 5;
+string predictedAt = 6;
+};
+message PredictionWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string inputData = 4;
+string outputData = 5;
+string predictedAt = 6;
+};
+message PredictionParams {
+ModelWhereUniqueInput modelWhereUniqueInput = 1;
+PredictionWhereUniqueInput predictionWhereUniqueInput = 2;
+};

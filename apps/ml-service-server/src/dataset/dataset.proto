@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+                 package dataset;
+service DatasetService {
+ rpc createDataset (DatasetCreateInput) returns (Dataset) {}
+rpc datasets (findManyParams) returns (stream Dataset) {}
+rpc dataset (DatasetWhereUniqueInput) returns (Dataset) {}
+rpc updateDataset (DatasetUpdateInput) returns (Dataset) {}
+rpc deleteDataset (DatasetWhereUniqueInput) returns (Dataset) {}
+rpc findManyDataset (DatasetWhereUniqueInput) returns (stream TrainingJob) {}
+rpc updateDataset (TrainingJobParams) returns (stream TrainingJob) {}
+rpc connectDataset (TrainingJobParams) returns (TrainingJob) {}
+rpc disconnectDataset (TrainingJobParams) returns (TrainingJob) {} 
+ }
+message DatasetCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string source = 5;
+int32 size = 6;
+repeated string format = 7;
+repeated TrainingJob trainingJobs = 8;
+};
+message Dataset {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string source = 5;
+int32 size = 6;
+repeated string format = 7;
+repeated TrainingJob trainingJobs = 8;
+};
+message DatasetWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string source = 5;
+int32 size = 6;
+repeated string format = 7;
+repeated TrainingJob trainingJobs = 8;
+};
+message DatasetUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string source = 5;
+int32 size = 6;
+repeated string format = 7;
+repeated TrainingJob trainingJobs = 8;
+};
+message findManyParams {
+
+};
+message TrainingJob {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJobWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+repeated string status = 4;
+string endTime = 5;
+string startTime = 6;
+};
+message TrainingJobParams {
+DatasetWhereUniqueInput datasetWhereUniqueInput = 1;
+TrainingJobWhereUniqueInput trainingjobWhereUniqueInput = 2;
+};
